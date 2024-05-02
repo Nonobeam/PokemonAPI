@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Battle</title>
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+
+    <div class="battle-container">
+      <div class="pokemon-container">
+        <div class="pokemon player">
+
+          <!-- Your player's Pokémon -->
+          <div class="movement-container">
+            <div class="hp"></div>
+            <div id="atkValue1" class="attack"></div>
+            <input type="text" id="pokemon1Id" placeholder="Enter Pokemon 1 ID">
+          </div>
+
+        </div>
+        <div class="pokemon opponent">
+
+          <!-- Opponent's Pokémon -->
+          <div class="movement-container">
+            <div class="hp"></div>
+            <div id="atkValue2" class="attack"></div>
+            <input type="text" id="pokemon2Id" placeholder="Enter Pokemon 2 ID">
+            <button onclick="getPokemonAtk()">Submit</button>
+          </div>
+
+        </div>
+      </div>
+      <div class="battle-actions">
+        <!-- Battle actions buttons -->
+        <button class="attack-btn">Attack</button>
+        <button class="start-btn">Start</button>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="message-box">
+      </div>
+    </div>
+
+    <script src="/js/main.js">
+    </script>
+  </body>
+</html>
