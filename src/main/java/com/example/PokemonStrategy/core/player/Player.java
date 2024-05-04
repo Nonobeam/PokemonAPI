@@ -4,6 +4,7 @@ import com.example.PokemonStrategy.core.pokemon.Pokemon;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -31,6 +32,7 @@ public class Player implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -45,6 +47,7 @@ public class Player implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
+//        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override
@@ -75,5 +78,18 @@ public class Player implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "playerId=" + playerId +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", turn=" + turn +
+                ", status=" + status +
+                ", role=" + role +
+                ", pokemonList=" + pokemonList +
+                '}';
     }
 }

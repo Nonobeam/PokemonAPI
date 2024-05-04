@@ -1,13 +1,11 @@
 package com.example.PokemonStrategy.service;
 
 import com.example.PokemonStrategy.core.player.Player;
-import com.example.PokemonStrategy.core.player.Status;
 import com.example.PokemonStrategy.core.pokemon.Pokemon;
 import com.example.PokemonStrategy.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -34,6 +32,10 @@ public class PlayerService {
     public List<Player> findPlayers() {
 //        return playerRepository.findAllByStatus(Status.ONLINE);
         return playerRepository.findAll();
+    }
+
+    public Player addPlayer(Player player) {
+        return playerRepository.save(player);
     }
 
 }

@@ -7,6 +7,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,8 @@ import java.util.function.Function;
 public class JwtService {
 
     // Encryption key HS256
-    private static final String SECRET_KEY = "b1b61a49c7ad56cc29e71343a2fbbed93e0d459c3ac7949dd39f401236fd87d9";
+    @Value("${secret_key.hs256}")
+    private String SECRET_KEY;
     private static final Logger logger = LoggerFactory.getLogger(JwtService.class);
     public String extractPlayerName(String token){
         return extractClaim(token, Claims::getSubject);
@@ -35,8 +37,6 @@ public class JwtService {
     }
 
     public String generateToken(UserDetails userDetails) {
-        // Log token generation
-        logger.info("Generating JWT token for user: {}", userDetails.getUsername());
         return generateToken(new HashMap<>(), userDetails);
     }
 
@@ -56,8 +56,6 @@ public class JwtService {
 
     public boolean isTokenValid(String token, UserDetails userDetails){
         final String userName = extractPlayerName(token);
-        // Log token validation
-        logger.info("Validating JWT token for user: {}", userDetails.getUsername());
         return (userName.equals(userDetails.getUsername())) && ! isTokenExpired(token);
     }
 

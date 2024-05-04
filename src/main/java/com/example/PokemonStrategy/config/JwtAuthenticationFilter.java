@@ -32,18 +32,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @Nonnull HttpServletResponse response,
             @Nonnull FilterChain filterChain
     ) throws ServletException, IOException {
+        if (request.getServletPath().contains("/api/v1/auth")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         // Extract the Authorization header from the HTTP request
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String userName;
-
-        // Log the received JWT token
-        if (authHeader == null) {
-            logger.info("No JWT token provided");
-        } else {
-            logger.info("JWT token received: {}" + authHeader);
-        }
 
         // Check if the Authorization header is missing or doesn't start with "Bearer"
         // If so, pass the request and response to the next filter in the chain
@@ -54,6 +51,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         // Extract the JWT token from the Authorization header
         jwt = authHeader.substring(7); // Remove "Bearer " from the beginning
+
         // Extract the username from the JWT token using a service
         userName = jwtService.extractPlayerName(jwt);
 
@@ -61,6 +59,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null){
             // Get UserDetails from the database using the username
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userName);
+
             // Check if the JWT token is valid for the UserDetails
             if (jwtService.isTokenValid(jwt, userDetails)) {
                 // Create an Authentication token for the user
