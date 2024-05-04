@@ -13,7 +13,7 @@ CREATE TABLE Player(
 
 INSERT INTO Player VALUES 
 	(NEWID(), 'Player 1', 'Attack', 'ONLINE', '123', 'Admin'),
-	(NEWID(), 'Player 2', 'Attack', 'OFFLINE', '456', 'User')
+	(NEWID(), 'Player 2', 'Defend', 'OFFLINE', '456', 'User')
 
 SELECT * FROM Player
 
