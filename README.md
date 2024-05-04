@@ -14,8 +14,11 @@ Pokemon Api is an API for testing REST API, jwt, Docker
 Documentation quick links
 ------------------------------------------------------------------------
 
-* [docker-compose.yaml][2] - Docker compose file for you in case of need.
-* [Document.md][5] - System technology.
+* [Docker Compose File][2] - Docker compose file for you in case of need.
+* [Document][3] - System technology.
+
+[2]: https://github.com/Nonobeam/PokemonAPI/blob/master/docker-compose.yaml
+[3]: https://github.com/Nonobeam/PokemonAPI/blob/master/Document.md
 
 
 License
