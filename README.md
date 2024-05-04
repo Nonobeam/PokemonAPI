@@ -17,7 +17,7 @@ Documentation quick links
 * [Docker Compose File][2] - Docker compose file for you in case of need.
 * [Document][3] - System technology.
 
-[2]: https://github.com/Nonobeam/PokemonAPI/blob/master/docker-compose.yaml
+[2]: https://github.com/Nonobeam/PokemonAPI/blob/master/docker-compose.yml
 [3]: https://github.com/Nonobeam/PokemonAPI/blob/master/Document.md
 
 
