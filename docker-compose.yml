@@ -1,10 +1,13 @@
-services:
+version: '3.8'
 
-  sql-server-db:
-    container_name: sql-server-db
-    image: microsoft/mssql-server-linux:2017-latest
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: 'YourStrong@Passw0rd'
+    volumes:
+      - ./initDB.sql:/usr/src/sql-scripts/initDB.sql
     ports:
       - "1433:1433"
-    environment:
-      SA_PASSWORD: "change_this_password"
-      ACCEPT_EULA: "Y"
+    command: ["/bin/bash", "-c", "/opt/mssql/bin/sqlservr & sleep 10 && /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong@Passw0rd -i /SQL/initDB.sql"]
